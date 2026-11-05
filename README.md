@@ -1,14 +1,19 @@
 name: build
-on: [push, workflow_dispatch]
+on:
+  push:
+  workflow_dispatch:
 jobs:
   apk:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
-        with: {distribution: temurin, java-version: 17}
+        with:
+          distribution: temurin
+          java-version: 17
       - uses: gradle/actions/setup-gradle@v4
-        with: {gradle-version: "8.9"}
+        with:
+          gradle-version: 8.9
       - run: |
           unzip -q ./*.zip -d x
           mkdir proj
